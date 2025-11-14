@@ -44,14 +44,11 @@ class Board:
         """Validate the board after initialization."""
         if not self.columns:
             raise ValueError("Board must have at least one column")
-        self._validate_columns()
 
-    def _validate_columns(self) -> None:
-        """Ensure all columns are valid BoardColumn instances."""
         for col in self.columns:
             if not isinstance(col, BoardColumn):
                 raise TypeError(
-                    f"Invalid column type: {type(col)}. Must be BoardColumn enum."
+                    f"Invalid column type: {type(col).__name__}. Must be BoardColumn enum."
                 )
 
     def get_column_count(self) -> int:
@@ -163,4 +160,3 @@ class Board:
         header = f"\n{'='*60}\n{self.name.center(60)}\n{'='*60}\n"
         columns = " | ".join(self.get_column_names())
         return f"{header}{columns}\n{'='*60}"
-
